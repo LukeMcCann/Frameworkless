@@ -14,11 +14,19 @@ Building a frameworkless application can seem daunting. Many people do not know 
 
 1. [Front Controller](/README/front-controller.md)
 2. [Composer](/README/composer.md)
-3. [Error Handling](/README/error-handling.md)
+3. [Error Handling & DotEnv](/README/error-handling.md)
+4. [HTTP](/README/http.md)
+
+
+# Why make this?
+
+As someone who is interested in improving my own codings skills I wanted to develop my programming knowledge and skills further. Having used Laravel in a working environment I realised my understanding of some framework components was lacking. In order to gain a greater insight I built my own basic framework. Still, I wondered how it may be possible to build a frameworkless project in a reasonable time. To build a basic MVC framework took a few days working throughout my evenings after work, "There must be a better solution", and there is! I scoured the internet for examples, but found very few articles on the topic, eventually discovering the book by Patrick Louys. I found this book to be most helpful, exactly what I wanted, many articles focusing on frameworkless projects ignored clean-code or OOP best practices, Partick Louys balances practicality of quickly setting up projects with modern practices for writing clean, maintainable, updatable applications using pure PHP. 
+
+If you have not read his book I strongly suggest you put it on your reading list. This tutorial does not contain the same information, whilt I include additional things for my own setup I wrote this tutorial to solidify information in my own mind, and as a way to explain writing pure PHP applications to others. 
 
 # Copyrights
 
-Inspired by Patrick Louis [Professional PHP: Building maintainable and secure applications](https://www.amazon.co.uk/Professional-PHP-Building-maintainable-applications/dp/198347598X/ref=sr_1_1?dchild=1&keywords=Professional+php&qid=1607024984&s=books&sr=1-1)
+Inspired by Patrick Louys [Professional PHP: Building maintainable and secure applications](https://www.amazon.co.uk/Professional-PHP-Building-maintainable-applications/dp/198347598X/ref=sr_1_1?dchild=1&keywords=Professional+php&qid=1607024984&s=books&sr=1-1)
 
 # Liscence 
 

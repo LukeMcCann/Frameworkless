@@ -75,6 +75,35 @@ Up to this point you should have something like this in your <code>bootstrap.php
     throw new \Exception;
 </pre>
 
+# DotEnv
 
+Why do we use DotEnv? why not just hard code the values? security. By defining our variables in our <code>Config.php</code> as such:
 
-[<< prev](composer.md) | [next >>](.md)
+<pre>
+    // DB Params
+    define('DB_HOST', $_ENV['DB_HOST']);
+    define('DB_PORT', $_ENV['DB_PORT']);
+
+    define('DB_NAME', $_ENV['DB_NAME']);
+    define('DB_ROOT_USER', $_ENV['DB_ROOT_USER']);
+    define('DB_ROOT_PWD', $_ENV['DB_ROOT_PWD']);
+
+    define('DB_USER', $_ENV['DB_USER']);
+    define('DB_PWD', $_ENV['DB_PWD']);
+
+    // App Root
+    define('APPROOT', dirname(dirname(__FILE__)));
+
+    // URL Root
+    define('URLROOT', $_ENV['URLROOT']);
+
+    // Site Name
+    define('SITENAME', $_ENV['APPNAME']);
+
+    // Show errors for development
+    define('SHOW_ERRORS', false);
+</pre>
+
+We add our environment files to our <code>$_ENV</code> global. This allows us to have a single file containing all of our configurations, which can then be accessed from wihtin our application without the need to give concrete values. By specifying our environment variables in our <code>.env</code> we can add our <code>.env</code> file to our <code>.gitignore</code> preventing our concrete values (such as database passwords) being committed into version control. 
+
+[<< prev](composer.md) | [next >>](http.md)

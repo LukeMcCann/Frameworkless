@@ -25,5 +25,18 @@ if ($environment !== 'production') {
 }
 $whoops->register();
 
-throw new \Exception;
+/**
+ * Create HTTP Request and Response Objects
+ */
+$request = new \Http\HttpRequest($_GET, $_POST, $_COOKIE, $_FILES, $_SERVER);
+$response = new \Http\HttpResponse;
+
+foreach ($response->getHeaders() as $header) {
+    header($header, false);
+}
+
+$content = '<h1>Hello World</h1>';
+$response->setContent($content);
+
+echo $response->getContent();
  
