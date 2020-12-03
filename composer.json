@@ -1,0 +1,13 @@
+{
+    "name": "planetdebug/frameworkless",
+    "description": "A frameworkless template for PHP projects",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Luke McCann",
+            "email": "developer-lukemccann@outlook.com"
+        }
+    ],
+    "require": {}
+}
