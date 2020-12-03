@@ -6,8 +6,19 @@
     "authors": [
         {
             "name": "Luke McCann",
-            "email": "developer-lukemccann@outlook.com"
+            "email": "developer-lukemccann@outlook.com",
+            "role": "Creator / Lead Developer"
         }
     ],
-    "require": {}
+    "require": {
+        "php": ">=7.0.0",
+        "vlucas/phpdotenv": "^5.2",
+        "filp/whoops": "^2.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "App \\": "App/",
+            "Core \\": "Core/"
+        }
+    }
 }
