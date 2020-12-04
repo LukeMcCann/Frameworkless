@@ -38,14 +38,6 @@ foreach ($response->getHeaders() as $header) {
 /**
  * Routing
  */
-$routeDefinitionCallback = function (\FastRoute\RouteCollector $r) {
-    $routes = require (dirname(__DIR__) . '/App/web.php');
-    foreach ($routes as $route) {
-        $r->addRoute($route[0], $route[1], $route[2]);
-    }
-};
-
-$dispatcher = \FastRoute\simpleDispatcher($routeDefinitionCallback);
 
 switch ($routeInfo[0]) {
     case \FastRoute\Dispatcher::NOT_FOUND:
@@ -57,9 +49,12 @@ switch ($routeInfo[0]) {
         $response->setStatusCode(405);
         break;
     case \FastRoute\Dispatcher::FOUND:
-        $handler = $routeInfo[1];
+        $className = $routeInfo[1][0];
+        $method = $routeInfo[1][1];
         $vars = $routeInfo[2];
-        call_user_func($handler, $vars);
+            
+        $class = new $className;
+        $class->$method($vars);
         break;
 }
 

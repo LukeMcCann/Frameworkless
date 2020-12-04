@@ -40,4 +40,69 @@ After installing this dependency, replace the hello world from the last chapter 
 
 Firstly, we register our available routes to the routing table. Then the dispatcher is called, with the corresponding switch statement being executed. If a matching route is discovered the handler callable is executed. 
 
-Since our <code>bootstrap.php</code> will become very quickly cluttered. We should therefoe move our routes into their own file <code>web.php</code>.
+Since our <code>bootstrap.php</code> will become very quickly cluttered. We should therefore move our routes into their own file <code>web.php</code>. This will simply return the available routes:
+
+<pre>
+    return [
+
+        ['GET', '/hello-world', function () {
+            echo 'Hello World';
+        }],
+
+        ['GET', '/another-route', function () {
+            echo 'This works too';
+        }],
+        
+    ];
+</pre>
+
+# Dispatching
+
+According to [Anthony Farrara](https://www.linkedin.com/in/ircmaxell/) & [Patrick Louys](https://patricklouys.com/about/) while MVC is a useful concept, it is not possible to truly implement in it's pure form with PHP. Anthony Ferrara explains this in detail in his article [A Beginners Guide to MVC For The Web](https://blog.ircmaxell.com/2014/11/a-beginners-guide-to-mvc-for-web.html) in which he explains the underlying issues with MVC and the fundamental communication difficulties of rendering with the view, the wasted resources from continuous state management of a stateful system. Anthony Ferrara concludes that what we should take from MVC is the general communciation and separation of responsibilities to split applications into different sections following SOLID's single responsibility principle, latching onto abstraction rather than MVC itself. 
+
+For dispatching we should first define a <code>HomeController</code>:
+
+<pre>
+    declare(strict_types = 1);
+
+    namespace Example\Controllers;
+
+    class Homepage
+    {
+        public function show()
+        {
+            echo 'Hello World';
+        }
+    }
+</pre>
+
+We can then change our routing to call this method instead of the callback function defined in <code>bootstrap.php</code>:
+
+<pre>
+    return [
+        ['GET', '/', ['App/Controllers/HomeController.php', 'show']],
+    ];
+</pre>
+
+This then requires a further refactor to our switch statement, specificlaly our actions of when a corresponding class/method are found; 
+
+<pre>
+    switch ($routeInfo[0]) {
+        case \FastRoute\Dispatcher::NOT_FOUND:
+            $response->setContent('404 - Page not found');
+            $response->setStatusCode(404);
+            break;
+        case \FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
+            $response->setContent('405 - Method not allowed');
+            $response->setStatusCode(405);
+            break;
+        case \FastRoute\Dispatcher::FOUND:
+            $className = $routeInfo[1][0];
+            $method = $routeInfo[1][1];
+            $vars = $routeInfo[2];
+                
+            $class = new $className;
+            $class->$method($vars);
+            break;
+    }
+</pre>
