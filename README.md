@@ -24,7 +24,7 @@ As someone who is interested in improving my own codings skills I wanted to deve
 
 If you have not read his book I strongly suggest you put it on your reading list. This tutorial does not contain the same information, whilt I include additional things for my own setup I wrote this tutorial to solidify information in my own mind, and as a way to explain writing pure PHP applications to others. 
 
-# Copyrights
+# Mentions
 
 Inspired by Patrick Louys [Professional PHP: Building maintainable and secure applications](https://www.amazon.co.uk/Professional-PHP-Building-maintainable-applications/dp/198347598X/ref=sr_1_1?dchild=1&keywords=Professional+php&qid=1607024984&s=books&sr=1-1)
 

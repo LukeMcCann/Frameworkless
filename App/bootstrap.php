@@ -35,8 +35,33 @@ foreach ($response->getHeaders() as $header) {
     header($header, false);
 }
 
-$content = '<h1>Hello World</h1>';
-$response->setContent($content);
+/**
+ * Routing
+ */
+$routeDefinitionCallback = function (\FastRoute\RouteCollector $r) {
+    $routes = require (dirname(__DIR__) . '/App/web.php');
+    foreach ($routes as $route) {
+        $r->addRoute($route[0], $route[1], $route[2]);
+    }
+};
+
+$dispatcher = \FastRoute\simpleDispatcher($routeDefinitionCallback);
+
+switch ($routeInfo[0]) {
+    case \FastRoute\Dispatcher::NOT_FOUND:
+        $response->setContent('404 - Page not found');
+        $response->setStatusCode(404);
+        break;
+    case \FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
+        $response->setContent('405 - Method not allowed');
+        $response->setStatusCode(405);
+        break;
+    case \FastRoute\Dispatcher::FOUND:
+        $handler = $routeInfo[1];
+        $vars = $routeInfo[2];
+        call_user_func($handler, $vars);
+        break;
+}
 
 echo $response->getContent();
  

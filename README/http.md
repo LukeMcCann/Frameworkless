@@ -39,4 +39,4 @@ To test this is working you may place this within (or between) the for loop:
     $response->setStatusCode(404);
 </pre>
 
-[<< prev](error-handling.md) | [next >>](.md)
+[<< prev](error-handling.md) | [next >>](routing.md)
